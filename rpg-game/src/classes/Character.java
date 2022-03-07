@@ -101,10 +101,15 @@ abstract class Character {
     this.ability = ability;
   }
 
-  public Character(String name, Ability ability) {
-    this.setName(name);
-    this.ability = ability;
+  public void incrementAbility(int str) {
+    int increment = str * 5;
+    this.getAbility().setDamage(this.getAbility().getDamage() + increment);
   }
 
-  abstract void attack(boolean ability);
+  protected Character(String name, Ability ability) {
+    this.setName(name);
+    this.setAbility(ability);
+  }
+
+  abstract void attack(boolean ability, Character foe);
 }

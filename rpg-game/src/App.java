@@ -2,14 +2,15 @@ import classes.*;
 
 public class App {
     public static void main(String[] args) {
-      Ability megaPunch = new Ability("megaPunch", 35);
-
+      Ability megaPunch = new Ability("Mega Punch", 35);
       Warrior tyr = new Warrior("Tyr", megaPunch);
 
       tyr.showCharacterStatus();
 
-      // tyr.attack(false);
+      Ability miasma = new Ability("Miasma", 20);
+      Warrior orc = new Warrior("Orc Leader", miasma);
 
+      tyr.attack(true, orc);
 
     }
 }

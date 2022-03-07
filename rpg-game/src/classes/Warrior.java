@@ -26,23 +26,26 @@ public class Warrior extends Character {
     this.setDef(this.getDef() + defIncrement);
     this.setmAtk(this.getmAtk() + mAtkIncrement);
     this.setMdef(this.getMdef() + mDefIncrement);
+    this.incrementAbility(this.getStr());
 
   }
 
   @Override
-  public void attack(boolean ability) {
-    int damage = ability ? this.getAbility().getDamage() : 10;
+  public void attack(boolean ability, Character foe) {
+    int attackPower = ability ? this.getAbility().getDamage() : this.getAtk();
+    int damage = attackPower - foe.getDef();
+
+    foe.setHp(foe.getHp() - damage);
 
     if (ability) {
-      System.out.printf("%s atacou com %s%n", this.getName(), this.getAbility().getAbilityName());
+      System.out.printf("%s atacou %s com %s%n", this.getName(), foe.getName(), this.getAbility().getAbilityName());
       System.out.printf("Ataque causou %d de dano%n", damage);
     } else {
-      System.out.printf("%s atacou%n", this.getName());
+      System.out.printf("%s atacou %s%n", this.getName(), foe.getName());
       System.out.printf("Ataque causou %d de dano%n", damage);
     }
 
-    this.setHp(this.getHp() - damage);
-
+    System.out.printf("O HP de %s foi reduzido para %d", foe.getName(), foe.getHp());
   }
 
   public void showCharacterStatus() {
