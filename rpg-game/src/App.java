@@ -2,12 +2,14 @@ import classes.*;
 
 public class App {
     public static void main(String[] args) {
-      Character Tyr = new Warrior("Terry", "Nemesis");
+      Ability megaPunch = new Ability("megaPunch", 35);
 
-      terry.setAbility("Run away", 25);
+      Warrior tyr = new Warrior("Tyr", megaPunch);
 
-      terry.attack(false);
+      tyr.showCharacterStatus();
 
-      System.out.println(terry.getHp());
+      // tyr.attack(false);
+
+
     }
 }

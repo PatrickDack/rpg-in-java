@@ -23,7 +23,7 @@ public class Ability {
     this.damage = damage;
   }
 
-  public void setAbility(String abilityName, int damage) {
+  public Ability(String abilityName, int damage) {
     this.setAbilityName(abilityName);
     this.setDamage(damage);
   }

@@ -2,17 +2,35 @@ package classes;
 
 abstract class Character {
   private String name;
-  private int level;
-  private int hp;
-  private int mp;
+  private int level = 1;
+  private int hp = 100;
+  private int mp = 100;
   private int str;
-  private int _int;
-  private int def;
-  private int mdef;
+  private int wise;
+  private int atk = 10;
+  private int mAtk = 10;
+  private int def = 10;
+  private int mdef = 10;
   private Ability ability;
 
   public String getName() {
     return name;
+  }
+
+  public int getAtk() {
+    return atk;
+  }
+
+  public void setAtk(int atk) {
+    this.atk = atk;
+  }
+
+  public int getmAtk() {
+    return mAtk;
+  }
+
+  public void setmAtk(int mAtk) {
+    this.mAtk = mAtk;
   }
 
   public void setName(String name) {
@@ -51,12 +69,12 @@ abstract class Character {
     this.str = str;
   }
 
-  public int get_int() {
-    return _int;
+  public int getWise() {
+    return wise;
   }
 
-  public void set_int(int _int) {
-    this._int = _int;
+  public void setWise(int wise) {
+    this.wise = wise;
   }
 
   public int getDef() {
@@ -75,10 +93,17 @@ abstract class Character {
     this.mdef = mdef;
   }
 
-  Character(String name, Ability ability) {
+  public Ability getAbility() {
+    return ability;
+  }
+
+  public void setAbility(Ability ability) {
+    this.ability = ability;
+  }
+
+  public Character(String name, Ability ability) {
     this.setName(name);
     this.ability = ability;
-    this.level = 1;
   }
 
   abstract void attack(boolean ability);
