@@ -31,35 +31,34 @@ public class Warrior extends Character {
   }
 
   @Override
-  public void attack(boolean ability, Character foe) {
-    int attackPower = ability ? this.getAbility().getDamage() : this.getAtk();
+  public void attack(Character foe) {
+    int attackPower = this.getAtk();
     int damage = attackPower - foe.getDef();
 
     foe.setHp(foe.getHp() - damage);
 
-    if (ability) {
-      System.out.printf("%s atacou %s com %s%n", this.getName(), foe.getName(), this.getAbility().getAbilityName());
-      System.out.printf("Ataque causou %d de dano%n", damage);
-    } else {
-      System.out.printf("%s atacou %s%n", this.getName(), foe.getName());
-      System.out.printf("Ataque causou %d de dano%n", damage);
-    }
+    System.out.printf("%s atacou %s%n", this.getName(), foe.getName());
+    System.out.printf("Ataque causou %d de dano%n", damage);
 
     System.out.printf("O HP de %s foi reduzido para %d", foe.getName(), foe.getHp());
   }
 
-  public void showCharacterStatus() {
-    System.out.printf("%s status%n", this.getName());
-    System.out.println();
-    System.out.printf("%-15s%d%n", "LEVEL", this.getLevel());
-    System.out.printf("%-15s%d%n", "HP", this.getHp());
-    System.out.printf("%-15s%d%n", "MP", this.getMp());
-    System.out.printf("%-15s%d%n", "ATK", this.getAtk());
-    System.out.printf("%-15s%d%n", "DEF", this.getDef());
-    System.out.printf("%-15s%d%n", "MATK", this.getmAtk());
-    System.out.printf("%-15s%d%n", "MDEF", this.getMdef());
-    System.out.printf("%-15s%d%n", "STR", this.getStr());
-    System.out.printf("%-15s%d%n", "WISE", this.getWise());
+  @Override
+  public void attack(boolean ability, Character foe) {
+    int attackPower = this.getAbility().getDamage();
+    int damage = attackPower - foe.getDef();
+
+    if (this.manaVerifyer()) {
+      this.setMp(this.getMp() - this.getAbility().getManaCost());
+      foe.setHp(foe.getHp() - damage);
+
+      System.out.printf("%s atacou %s com %s%n", this.getName(), foe.getName(), this.getAbility().getAbilityName());
+      System.out.printf("Ataque causou %d de dano%n", damage);
+      System.out.printf("O HP de %s foi reduzido para %d", foe.getName(), foe.getHp());
+    } else {
+      System.out.printf("%s", "Sem mana suficiente");
+    }
+
   }
 
 }

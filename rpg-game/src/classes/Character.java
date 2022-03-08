@@ -111,5 +111,24 @@ abstract class Character {
     this.setAbility(ability);
   }
 
+  public boolean manaVerifyer() {
+    return this.getAbility().getManaCost() < this.getMp();
+  }
+
+  public void showCharacterStatus() {
+    System.out.printf("%s status%n", this.getName());
+    System.out.println();
+    System.out.printf("%-15s%d%n", "LEVEL", this.getLevel());
+    System.out.printf("%-15s%d%n", "HP", this.getHp());
+    System.out.printf("%-15s%d%n", "MP", this.getMp());
+    System.out.printf("%-15s%d%n", "ATK", this.getAtk());
+    System.out.printf("%-15s%d%n", "DEF", this.getDef());
+    System.out.printf("%-15s%d%n", "MATK", this.getmAtk());
+    System.out.printf("%-15s%d%n", "MDEF", this.getMdef());
+    System.out.printf("%-15s%d%n", "STR", this.getStr());
+    System.out.printf("%-15s%d%n", "WISE", this.getWise());
+  }
+
+  abstract void attack(Character foe);
   abstract void attack(boolean ability, Character foe);
 }
