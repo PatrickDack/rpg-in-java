@@ -1,7 +1,6 @@
 package classes;
 
-public class Warrior extends Character {
-
+public class Sorcerer extends Character{
   int hpIncrement;
   int mpIncrement;
   int atkIncrement;
@@ -9,13 +8,13 @@ public class Warrior extends Character {
   int mAtkIncrement;
   int mDefIncrement;
 
-  public Warrior(String name, Ability ability) {
+  public Sorcerer(String name, Ability ability) {
     super(name, ability);
-    this.setStr(10);
-    this.setWise(5);
+    this.setStr(5);
+    this.setWise(10);
 
-    this.hpIncrement = this.getStr() * 5;
-    this.mpIncrement = this.getWise() * 2;
+    this.hpIncrement = this.getStr() * 4;
+    this.mpIncrement = this.getWise() * 3;
     this.atkIncrement = this.getStr() * 5;
     this.defIncrement = this.getStr() * 3;
     this.mAtkIncrement = this.getWise() * 5;
@@ -27,8 +26,7 @@ public class Warrior extends Character {
     this.setDef(this.getDef() + defIncrement);
     this.setmAtk(this.getmAtk() + mAtkIncrement);
     this.setMdef(this.getMdef() + mDefIncrement);
-    this.incrementAbility(this.getStr());
+    this.incrementAbility(this.getWise());
 
   }
-
 }

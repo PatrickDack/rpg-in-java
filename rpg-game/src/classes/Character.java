@@ -101,8 +101,8 @@ abstract class Character {
     this.ability = ability;
   }
 
-  public void incrementAbility(int str) {
-    int increment = str * 5;
+  public void incrementAbility(int essenceAtt) {
+    int increment = essenceAtt * 5;
     this.getAbility().setDamage(this.getAbility().getDamage() + increment);
   }
 
@@ -129,6 +129,32 @@ abstract class Character {
     System.out.printf("%-15s%d%n", "WISE", this.getWise());
   }
 
-  abstract void attack(Character foe);
-  abstract void attack(boolean ability, Character foe);
+  public void attack(Character foe) {
+    int attackPower = this.getAtk();
+    int damage = attackPower - foe.getDef();
+
+    foe.setHp(foe.getHp() - damage);
+
+    System.out.printf("%s atacou %s%n", this.getName(), foe.getName());
+    System.out.printf("Ataque causou %d de dano%n", damage);
+
+    System.out.printf("O HP de %s foi reduzido para %d%n", foe.getName(), foe.getHp());
+  }
+
+  public void attack(Ability ability, Character foe) {
+    int attackPower = ability.getDamage();
+    int damage = attackPower - foe.getDef();
+
+    if (this.manaVerifyer()) {
+      this.setMp(this.getMp() - ability.getManaCost());
+      foe.setHp(foe.getHp() - damage);
+
+      System.out.printf("%s atacou %s com %s%n", this.getName(), foe.getName(), ability.getAbilityName());
+      System.out.printf("Ataque causou %d de dano%n", damage);
+      System.out.printf("O HP de %s foi reduzido para %d%n", foe.getName(), foe.getHp());
+    } else {
+      System.out.printf("%s", "Sem mana suficiente");
+    }
+
+  }
 }
