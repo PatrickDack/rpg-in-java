@@ -12,6 +12,7 @@ abstract class Character {
   private int def = 10;
   private int mdef = 10;
   private Ability ability;
+  private Weapon weapon;
 
   public String getName() {
     return name;
@@ -156,5 +157,17 @@ abstract class Character {
       System.out.printf("%s", "Sem mana suficiente");
     }
 
+  }
+
+  public void attack(Weapon weapon, Character foe) {
+    int attackPower = weapon.getAtkPower() + this.getAtk();
+    int damage = attackPower - foe.getDef();
+
+    foe.setHp(foe.getHp() - damage);
+
+    System.out.printf("%s atacou %s%n", this.getName(), foe.getName());
+    System.out.printf("Ataque causou %d de dano%n", damage);
+
+    System.out.printf("O HP de %s foi reduzido para %d%n", foe.getName(), foe.getHp());
   }
 }

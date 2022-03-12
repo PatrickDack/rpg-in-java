@@ -8,13 +8,15 @@ public class App {
       Ability iceOrb = new Ability("Ice Orb", 50, 10);
       Sorcerer tamis = new Sorcerer("Tamis", iceOrb);
 
+      Weapon zweihander = new Weapon("Zweihander", 100);
+
       tamis.showCharacterStatus();
       tyr.showCharacterStatus();
 
       Ability miasma = new Ability("Miasma", 20, 12);
       Warrior orc = new Warrior("Orc Leader", miasma);
 
-      tyr.attack(megaPunch, orc);
+      tyr.attack(zweihander, orc);
       tamis.attack(iceOrb, orc);
 
     }
